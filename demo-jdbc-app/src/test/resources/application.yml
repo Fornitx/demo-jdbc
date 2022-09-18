@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: "${POSTGRES_URL}"
+    username: "${POSTGRES_USERNAME}"
+    password: "${POSTGRES_PASSWORD}"
+
+logging:
+  pattern:
+    dateformat: HH:mm:ss.SSS
+  level:
+    org.jooq.Constants: warn
+
+    org.jooq.tools.LoggerListener: debug
+    org.springframework.jdbc.core: trace

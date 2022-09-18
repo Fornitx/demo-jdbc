@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="set_search_path" author="fornit" runAlways="true">
+        <sql>
+            set search_path to ${database.defaultSchemaName}
+        </sql>
+        <rollback>
+            <sql/>
+        </rollback>
+    </changeSet>
+    <changeSet id="create_uuid_ossp_extension" author="fornit" runAlways="true">
+        <sql>
+            create extension if not exists "uuid-ossp"
+        </sql>
+        <rollback>
+            <sql/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
