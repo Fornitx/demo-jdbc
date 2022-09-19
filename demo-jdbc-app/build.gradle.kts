@@ -12,7 +12,6 @@ extra["jooq.version"] = "3.17.4"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-//    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-jooq")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
@@ -22,20 +21,21 @@ dependencies {
 //	implementation("org.jetbrains.kotlin:kotlin-reflect")
 //	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 //	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    implementation("org.liquibase:liquibase-core")
 
     implementation("io.github.microutils:kotlin-logging-jvm:2.1.23")
 
     implementation("io.micrometer:micrometer-core")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 
-    implementation("org.postgresql:postgresql")
+    runtimeOnly("org.postgresql:postgresql")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
 
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
+
+    testImplementation("org.liquibase:liquibase-core")
 
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
 
