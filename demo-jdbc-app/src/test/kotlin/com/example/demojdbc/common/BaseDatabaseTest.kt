@@ -1,5 +1,8 @@
 package com.example.demojdbc.common
 
+import com.github.dockerjava.api.model.ExposedPort
+import com.github.dockerjava.api.model.PortBinding
+import com.github.dockerjava.api.model.Ports
 import mu.KLogging
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
@@ -31,6 +34,14 @@ abstract class BaseDatabaseTest {
             .withUsername("postgres")
             .withPassword("postgres")
             .withInitScript("init.sql")
+            .withCreateContainerCmdModifier {
+                it.withPortBindings(
+                    PortBinding(
+                        Ports.Binding.bindPort(PostgreSQLContainer.POSTGRESQL_PORT),
+                        ExposedPort(PostgreSQLContainer.POSTGRESQL_PORT)
+                    )
+                )
+            }
 
         init {
             postgresContainer.start()
