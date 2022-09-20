@@ -5,7 +5,7 @@ plugins {
     kotlin("plugin.spring") version System.getProperty("kotlinVersion")
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_18
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 extra["testcontainersVersion"] = "1.17.3"
 extra["jooq.version"] = "3.17.4"
@@ -51,7 +51,7 @@ dependencyManagement {
 tasks.compileKotlin {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "18"
+        jvmTarget = "17"
     }
 }
 
