@@ -4,7 +4,7 @@
 create table if not exists project
 (
     id         uuid primary key     default uuid_generate_v4(),
-    project_id varchar(50) not null,
+    project_id uuid not null,
     rules      jsonb       not null,
     version    bigint      not null default 1,
     created_at timestamptz not null default now(),

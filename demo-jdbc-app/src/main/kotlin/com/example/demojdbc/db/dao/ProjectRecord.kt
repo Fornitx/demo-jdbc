@@ -6,7 +6,7 @@ import java.util.*
 
 data class ProjectRecord(
     val id: UUID,
-    val projectId: String,
+    val projectId: UUID,
     val rules: JSONB,
     val version: Long,
     val createdAt: OffsetDateTime,

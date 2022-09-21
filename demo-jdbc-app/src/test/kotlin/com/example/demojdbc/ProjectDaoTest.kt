@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.dao.DuplicateKeyException
 import org.springframework.dao.OptimisticLockingFailureException
+import java.util.*
 
 @SpringBootTest
 class ProjectDaoTest : BaseDatabaseTest() {
@@ -25,7 +26,7 @@ class ProjectDaoTest : BaseDatabaseTest() {
 
     @Test
     fun testUpsertNew() {
-        val projectId = "proj:1"
+        val projectId = UUID.randomUUID()
 
         val saved = dao.upsert(projectId, listOf(), USER_1)
         log.info { "saved = $saved" }
@@ -40,7 +41,7 @@ class ProjectDaoTest : BaseDatabaseTest() {
 
     @Test
     fun testFindByProjectId() {
-        val projectId = "proj:2"
+        val projectId = UUID.randomUUID()
 
         val saved = dao.upsert(projectId, listOf(), USER_1)
         log.info { "saved = $saved" }
@@ -53,7 +54,7 @@ class ProjectDaoTest : BaseDatabaseTest() {
 
     @Test
     fun testUpsertNewDuplicateKey() {
-        val projectId = "proj:3"
+        val projectId = UUID.randomUUID()
 
         val saved = dao.upsert(projectId, listOf(), USER_1)
         log.info { "saved = $saved" }
@@ -65,7 +66,7 @@ class ProjectDaoTest : BaseDatabaseTest() {
 
     @Test
     fun testUpsertNewWithVersion() {
-        val projectId = "proj:4"
+        val projectId = UUID.randomUUID()
 
         val saved = dao.upsert(projectId, listOf(), USER_1, 5)
         log.info { "saved = $saved" }
@@ -74,7 +75,7 @@ class ProjectDaoTest : BaseDatabaseTest() {
 
     @Test
     fun testUpsertExisting() {
-        val projectId = "proj:5"
+        val projectId = UUID.randomUUID()
 
         val saved = dao.upsert(projectId, listOf(), USER_1)
         log.info { "saved = $saved" }
@@ -90,7 +91,7 @@ class ProjectDaoTest : BaseDatabaseTest() {
 
     @Test
     fun testUpsertExistingOptimisticLock() {
-        val projectId = "proj:6"
+        val projectId = UUID.randomUUID()
 
         val saved = dao.upsert(projectId, listOf(), USER_1)
         log.info { "saved = $saved" }
@@ -102,7 +103,7 @@ class ProjectDaoTest : BaseDatabaseTest() {
 
     @Test
     fun testUpsertFromAppDir() {
-        val projectId = "proj:7"
+        val projectId = UUID.randomUUID()
 
         val saved = dao.upsertFromAppDir(projectId, listOf())
         log.info { "saved = $saved" }
@@ -116,7 +117,7 @@ class ProjectDaoTest : BaseDatabaseTest() {
 
     @Test
     fun testUpsertFromAppDirExisting() {
-        val projectId = "proj:8"
+        val projectId = UUID.randomUUID()
 
         val saved = dao.upsertFromAppDir(projectId, listOf())
         log.info { "saved = $saved" }
@@ -137,7 +138,7 @@ class ProjectDaoTest : BaseDatabaseTest() {
 
     @Test
     fun testUpsertFromAppDirOptimisticLock() {
-        val projectId = "proj:9"
+        val projectId = UUID.randomUUID()
 
         val saved = dao.upsertFromAppDir(projectId, listOf())
         log.info { "saved = $saved" }

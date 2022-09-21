@@ -8,6 +8,7 @@ import org.jooq.impl.DSL
 import org.jooq.impl.SQLDataType
 import org.springframework.dao.OptimisticLockingFailureException
 import org.springframework.stereotype.Component
+import java.util.UUID
 
 @Component
 class ProjectDao(
@@ -21,7 +22,7 @@ class ProjectDao(
     private val projectTable = DSL.table("project")
 
     private val projectIdField = DSL.field("id", SQLDataType.UUID)
-    private val projectProjectIdField = DSL.field("project_id", SQLDataType.VARCHAR)
+    private val projectProjectIdField = DSL.field("project_id", SQLDataType.UUID)
     private val projectRulesField = DSL.field("rules", SQLDataType.JSONB)
     private val projectVersionField = DSL.field("version", SQLDataType.BIGINT)
     private val projectCreatedAtField = DSL.field("created_at", SQLDataType.TIMESTAMPWITHTIMEZONE)
@@ -43,13 +44,13 @@ class ProjectDao(
     private val fixedProjectVersionField = DSL.field("project.version", SQLDataType.BIGINT)
     private val fixedProjectUpdatedByField = DSL.field("project.updated_by", SQLDataType.VARCHAR)
 
-    fun findByProjectId(projectId: String): ProjectRecord? {
+    fun findByProjectId(projectId: UUID): ProjectRecord? {
         return dslContext.selectFrom(projectTable)
             .where(projectProjectIdField.eq(projectId))
             .fetchOneInto(ProjectRecord::class.java)
     }
 
-    fun upsert(projectId: String, rules: List<RuleDto>, user: String, version: Long? = null): ProjectRecord {
+    fun upsert(projectId: UUID, rules: List<RuleDto>, user: String, version: Long? = null): ProjectRecord {
         if (version == null) {
             return dslContext.insertInto(
                 projectTable,
@@ -83,7 +84,7 @@ class ProjectDao(
         }
     }
 
-    fun upsertFromAppDir(projectId: String, rules: List<RuleDto>): ProjectRecord {
+    fun upsertFromAppDir(projectId: UUID, rules: List<RuleDto>): ProjectRecord {
         return dslContext.insertInto(
             projectTable,
             projectProjectIdField,
