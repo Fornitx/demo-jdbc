@@ -35,7 +35,7 @@ abstract class BaseDatabaseTest {
             .withPassword("postgres")
             .withInitScript("init.sql")
             .withCreateContainerCmdModifier {
-                it.withPortBindings(
+                it.hostConfig!!.withPortBindings(
                     PortBinding(
                         Ports.Binding.bindPort(PostgreSQLContainer.POSTGRESQL_PORT),
                         ExposedPort(PostgreSQLContainer.POSTGRESQL_PORT)

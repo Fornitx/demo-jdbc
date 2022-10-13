@@ -7,7 +7,7 @@ plugins {
 
 java.sourceCompatibility = JavaVersion.VERSION_17
 
-extra["testcontainersVersion"] = "1.17.3"
+extra["testcontainersVersion"] = System.getProperty("testcontainersVersion")
 extra["jooq.version"] = "3.17.4"
 
 dependencies {
@@ -22,7 +22,7 @@ dependencies {
 //	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 //	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
-    implementation("io.github.microutils:kotlin-logging-jvm:2.1.23")
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.2")
 
     implementation("io.micrometer:micrometer-core")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
