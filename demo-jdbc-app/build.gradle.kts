@@ -8,7 +8,7 @@ plugins {
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 extra["testcontainersVersion"] = System.getProperty("testcontainersVersion")
-extra["jooq.version"] = "3.17.4"
+extra["jooq.version"] = "3.17.6"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -22,7 +22,7 @@ dependencies {
 //	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 //	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
-    implementation("io.github.microutils:kotlin-logging-jvm:3.0.2")
+    implementation("io.github.microutils:kotlin-logging-jvm:3.0.4")
 
     implementation("io.micrometer:micrometer-core")
     runtimeOnly("io.micrometer:micrometer-registry-prometheus")
@@ -37,7 +37,7 @@ dependencies {
 
     testImplementation("org.liquibase:liquibase-core")
 
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
 
     testImplementation(project(":demo-jdbc-db"))
 }
